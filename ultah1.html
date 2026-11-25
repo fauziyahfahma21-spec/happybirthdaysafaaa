@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Happy Birthday, SAFAAA! 💜</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :root {
+    --lilac-light: #f6ebff;
+    --lilac: #d9b8ff;
+    --purple: #9b67d1;
+    --deep: #5a248c;
+    --glass-bg: rgba(255, 255, 255, 0.16);
+    --glass-border: rgba(255, 255, 255, 0.45);
+  }
+
+  body {
+    min-height: 100dvh;
+    width: 100vw;
+    overflow: hidden;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #fff;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(248, 232, 255, 0.7), transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(168, 114, 232, 0.8), transparent 50%),
+      linear-gradient(135deg, #9d71d8 0%, #7d4eb8 45%, #c59cf5 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 16s ease-in-out infinite;
+    display: grid;
+    place-items: center;
+    position: relative;
+  }
+
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* Ambient Orbs */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(55px);
+    opacity: 0.42;
+    pointer-events: none;
+    z-index: 0;
+    transform: translate3d(0, 0, 0);
+    animation: orbFloat 12s ease-in-out infinite alternate;
+  }
+  .orb-1 {
+    width: clamp(200px, 40vw, 420px);
+    height: clamp(200px, 40vw, 420px);
+    background: #f3d6ff;
+    top: -10%;
+    left: -10%;
+  }
+  .orb-2 {
+    width: clamp(220px, 45vw, 480px);
+    height: clamp(220px, 45vw, 480px);
+    background: #6f35ab;
+    bottom: -15%;
+    right: -10%;
+    animation-delay: -6s;
+  }
+
+  @keyframes orbFloat {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to { transform: translate3d(24px, 20px, 0) scale(1.08); }
+  }
+
+  /* Screen Transitions */
+  .screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: clamp(16px, 4vw, 32px);
+    z-index: 10;
+    will-change: opacity, transform;
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate3d(0, 16px, 0) scale(0.97);
+  }
+
+  /* Typography */
+  h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2.3rem, 6.8vw, 4.6rem);
+    font-weight: 700;
+    line-height: 1.12;
+    margin: 10px 0;
+    text-shadow: 0 6px 24px rgba(74, 30, 120, 0.42);
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    font-size: clamp(0.95rem, 2.4vw, 1.16rem);
+    line-height: 1.75;
+    max-width: 650px;
+    color: rgba(255, 255, 255, 0.95);
+  }
+
+  /* First screen: deep black-to-purple luxury atmosphere */
+  #first {
+    background:
+      radial-gradient(circle at 22% 25%, rgba(168, 85, 247, 0.16), transparent 42%),
+      radial-gradient(circle at 78% 72%, rgba(192, 132, 252, 0.14), transparent 45%),
+      radial-gradient(ellipse at 50% 48%, #341157 0%, #17051f 52%, #050307 100%);
+    overflow: hidden;
+    padding: 0;
+  }
+  #first::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at center, rgba(168, 85, 247, 0.22), transparent 65%);
+  }
+
+  /* Lapisan bintang-bintang kecil berkedip di layar pertama */
+  .starfield {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .mini-star {
+    position: absolute;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 6px rgba(244, 216, 255, 0.8);
+    will-change: opacity, transform;
+    animation: starTwinkle var(--dur, 3.5s) ease-in-out infinite alternate;
+  }
+
+  .mini-star.cross {
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    width: auto !important;
+    height: auto !important;
+    color: #f8e6ff;
+    line-height: 1;
+    text-shadow: 0 0 8px rgba(235, 190, 255, 0.85);
+  }
+
+  @keyframes starTwinkle {
+    0% {
+      opacity: var(--min-op, 0.2);
+      transform: translate3d(0, 0, 0) scale(0.85);
+    }
+    100% {
+      opacity: var(--max-op, 0.95);
+      transform: translate3d(0, 0, 0) scale(1.15);
+    }
+  }
+
+  /* Canvas penuh satu layar (Tanpa CSS filter drop-shadow berat agar 60fps mulus) */
+  .heart-stage {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  #heartCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .touch-hint {
+    position: absolute;
+    bottom: 5.5vh;
+    z-index: 5;
+    font-size: clamp(0.85rem, 2.4vw, 1.08rem);
+    letter-spacing: 0.16em;
+    color: rgba(250, 238, 255, 0.92);
+    text-shadow: 0 0 18px rgba(185, 80, 255, 0.85), 0 3px 12px rgba(0, 0, 0, 0.7);
+    pointer-events: none;
+    animation: pulseHint 2.8s ease-in-out infinite;
+  }
+
+  @keyframes pulseHint {
+    0%, 100% { opacity: 0.6; transform: translate3d(0, 0, 0); }
+    50% { opacity: 1; transform: translate3d(0, -5px, 0); }
+  }
+
+  /* Glass Buttons & Navigation Bar */
+  .nav-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: clamp(16px, 3vh, 26px);
+    z-index: 20;
+  }
+
+  .btn {
+    position: relative;
+    overflow: hidden;
+    margin-top: clamp(18px, 3.5vh, 28px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.22);
+    color: #fff;
+    padding: 14px 30px;
+    border-radius: 999px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(0.92rem, 2.4vw, 1.04rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(72, 29, 117, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background 0.35s ease;
+    z-index: 20;
+  }
+
+  .nav-actions .btn {
+    margin-top: 0;
+  }
+
+  .btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+    transform: skewX(-25deg);
+    animation: shimmer 3.8s infinite;
+  }
+
+  @keyframes shimmer {
+    0%, 60% { left: -100%; }
+    100% { left: 200%; }
+  }
+
+  .btn:hover {
+    transform: translate3d(0, -3px, 0) scale(1.03);
+    background: rgba(255, 255, 255, 0.34);
+  }
+
+  .btn:active {
+    transform: translate3d(0, 0, 0) scale(0.97);
+  }
+
+  .btn-secondary {
+    padding: 11px 22px;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.14);
+  }
+
+  .btn-primary-next {
+    padding: 11px 24px;
+    font-size: 0.9rem;
+    background: rgba(246, 224, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.85);
+  }
+
+  /* Message Card */
+  .message {
+    position: relative;
+    z-index: 15;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 28px;
+    padding: clamp(22px, 4.5vw, 40px) clamp(20px, 5vw, 46px);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 20px 60px rgba(58, 22, 97, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+    width: min(92vw, 720px);
+    max-height: 72dvh;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+
+  .message::-webkit-scrollbar {
+    display: none;
+  }
+
+  .birth-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2.8vw, 1.25rem);
+    color: #fff6ff;
+    letter-spacing: 0.03em;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 16px rgba(72, 29, 117, 0.2);
+  }
+
+  #second h1,
+  #third h1 {
+    font-size: clamp(1.9rem, 5.6vw, 3.3rem);
+    margin-bottom: 12px;
+  }
+
+  .letter-copy {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.22rem, 3.1vw, 1.52rem) !important;
+    font-weight: 600;
+    line-height: 1.55 !important;
+    margin: 12px auto !important;
+    color: #ffffff;
+    text-shadow: 0 2px 12px rgba(63, 21, 108, 0.28);
+  }
+
+  .letter-copy.quote-italic {
+    font-style: italic;
+    color: #f9e8ff;
+  }
+
+  .tiny {
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+    font-size: clamp(1.1rem, 2.6vw, 1.3rem) !important;
+    font-style: italic;
+    opacity: 0.92;
+    margin-top: 16px !important;
+  }
+
+  /* Garden & Flowers */
+  #garden {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  .flower {
+    position: absolute;
+    bottom: -15px;
+    transform-origin: bottom center;
+    --scale: 1;
+    will-change: transform, opacity;
+    animation: growing 2.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    opacity: 0;
+  }
+
+  @keyframes growing {
+    0% {
+      transform: translate3d(0, 45px, 0) scale(0.05);
+      opacity: 0;
+    }
+    60% {
+      opacity: 1;
+    }
+    100% {
+      transform: translate3d(0, 0, 0) scale(var(--scale));
+      opacity: 1;
+    }
+  }
+
+  .flower svg {
+    overflow: visible;
+    transform-origin: bottom center;
+    will-change: transform;
+    animation: sway var(--sway-dur, 4.5s) ease-in-out infinite alternate;
+  }
+
+  @keyframes sway {
+    from { transform: rotate(-3.5deg) translate3d(0, 0, 0); }
+    to { transform: rotate(4.5deg) translate3d(0, 0, 0); }
+  }
+
+  /* Sparkles & Falling Petals */
+  #particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    overflow: hidden;
+  }
+
+  .sparkle {
+    position: absolute;
+    color: #fff;
+    will-change: transform, opacity;
+    animation: floatUp linear infinite;
+    opacity: 0;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translate3d(0, 105dvh, 0) rotate(0deg) scale(0.8); opacity: 0; }
+    15% { opacity: 0.8; }
+    85% { opacity: 0.8; }
+    100% { transform: translate3d(0, -15dvh, 0) rotate(360deg) scale(1.1); opacity: 0; }
+  }
+
+  .petal {
+    position: absolute;
+    top: -30px;
+    width: 14px;
+    height: 18px;
+    background: linear-gradient(135deg, #f7e4ff, #cfa3ff);
+    border-radius: 15px 0 15px 0;
+    opacity: 0.72;
+    will-change: transform, opacity;
+    animation: fallPetal linear infinite;
+  }
+
+  @keyframes fallPetal {
+    0% {
+      transform: translate3d(0, -10vh, 0) rotate(0deg);
+      opacity: 0;
+    }
+    15% { opacity: 0.75; }
+    85% { opacity: 0.75; }
+    100% {
+      transform: translate3d(var(--drift, 60px), 108dvh, 0) rotate(540deg);
+      opacity: 0;
+    }
+  }
+
+  /* Burst Confetti Particle */
+  .burst-particle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 50;
+    font-size: 18px;
+    will-change: transform, opacity;
+    animation: burstOut 1.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes burstOut {
+    0% {
+      transform: translate3d(0, 0, 0) scale(0.5);
+      opacity: 1;
+    }
+    100% {
+      transform: translate3d(var(--tx), var(--ty), 0) scale(1.25) rotate(180deg);
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .message {
+      border-radius: 22px;
+      padding: 22px 18px;
+      max-height: 68dvh;
+    }
+    .btn {
+      padding: 13px 24px;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Ganti src="lagu-kamu.mp3" dengan nama file lagu atau URL lagu Anda -->
+  <audio id="bgMusic" src="Nadin Amizah - Semua Aku Dirayakan (Official Music Video).mp3" autoplay loop preload="auto"></audio>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div id="particles"></div>
+
+  <!-- Layar 1: Bintang-bintang Mewah + Hati Besar Partikel Gradasi Ungu -->
+  <section id="first" class="screen">
+    <div class="starfield" id="starfield"></div>
+    <div class="heart-stage" onclick="openSurprise(event)" title="Klik hati untuk membuka kejutan 💜">
+      <canvas id="heartCanvas"></canvas>
+    </div>
+    <p class="touch-hint">KLIK HATINYA YAWWW^_^ ✦</p>
+  </section>
+
+  <!-- Layar 2: Ucapan Utama + Tanggal Lahir + Taman Bunga -->
+  <section id="second" class="screen hidden">
+    <div id="garden"></div>
+    <div class="message" id="card">
+      <div class="birth-badge">🎂 26-November</div>
+      <h1>Happy Birthday, Safa Yustia Rahma! 💜</h1>
+      <p class="letter-copy">Semoga hari-harimu selalu dipenuhi hal-hal baik, orang-orang yang menyayangimu, dan mimpi-mimpi yang perlahan menjadi nyata.</p>
+      <p class="letter-copy quote-italic">Semoga dalam hidupmu membawa banyak kebahagiaan, ketenangan, dan kejutan indah.</p>
+      <p class="letter-copy">sending you a garden full of lilac blooms and endless warmth. 🌷</p>
+      <p class="tiny">With lots of love, your best friend 💜</p>
+    </div>
+    <div class="nav-actions">
+      <button class="btn btn-secondary" onclick="goToScreen('first')">← Kembali</button>
+      <button class="btn btn-primary-next" onclick="goToScreen('third')">Selanjutnya →</button>
+    </div>
+  </section>
+
+  <!-- Layar 3: Halaman Lanjutan -->
+  <section id="third" class="screen hidden">
+    <div class="message">
+      <div class="birth-badge">✨ Sebuah Doa Kecil ✨</div>
+      <h1>For Every Chapter Ahead 💜</h1>
+      <p class="letter-copy">Di setiap langkah barumu tahun ini, semoga selalu ada alasan untuk tersenyum, keberanian untuk mencoba hal-hal seru, dan pelukan hangat saat lelah datang.</p>
+      <p class="letter-copy quote-italic">Apa pun rencanamu ke depan, aku akan selalu ikut merayakan setiap pencapaian kecil maupun besarmu.</p>
+      <p class="tiny">Happy birthday, Sayangg! 🌷💜</p>
+    </div>
+    <div class="nav-actions">
+      <button class="btn btn-secondary" onclick="goToScreen('second')">← Kembali</button>
+      <button class="btn btn-primary-next" onclick="goToScreen('first')">Ke Awal ↺</button>
+    </div>
+  </section>
+
+<script>
+  const particlesContainer = document.getElementById('particles');
+  const starfield = document.getElementById('starfield');
+  const isMobile = window.innerWidth < 600;
+
+  // 0. Autoplay Lagu Saat Web Dibuka (+ fallback sentuhan pertama)
+  const bgMusic = document.getElementById('bgMusic');
+
+  function startMusic() {
+    if (!bgMusic || !bgMusic.getAttribute('src')) return;
+    const promise = bgMusic.play();
+    if (promise && typeof promise.then === 'function') {
+      promise.then(() => {
+        removeUnlockListeners();
+      }).catch(() => {});
+    }
+  }
+
+  function unlockAndPlayMusic() {
+    startMusic();
+  }
+
+  function removeUnlockListeners() {
+    document.removeEventListener('pointerdown', unlockAndPlayMusic);
+    document.removeEventListener('touchstart', unlockAndPlayMusic);
+    document.removeEventListener('keydown', unlockAndPlayMusic);
+  }
+
+  document.addEventListener('DOMContentLoaded', startMusic);
+  window.addEventListener('load', startMusic);
+  document.addEventListener('pointerdown', unlockAndPlayMusic, { passive: true });
+  document.addEventListener('touchstart', unlockAndPlayMusic, { passive: true });
+  document.addEventListener('keydown', unlockAndPlayMusic);
+
+  // 1. Bintang-bintang kecil berkedip mewah di layar pertama
+  function initStarfield() {
+    starfield.innerHTML = '';
+    const frag = document.createDocumentFragment();
+    const count = isMobile ? 38 : 65;
+    const crossChars = ['✦', '✧', '⋆'];
+
+    for (let i = 0; i < count; i++) {
+      const isCross = i % 8 === 0;
+      const star = document.createElement('div');
+      star.className = isCross ? 'mini-star cross' : 'mini-star';
+      star.style.left = (2 + Math.random() * 96) + '%';
+      star.style.top = (2 + Math.random() * 96) + '%';
+      star.style.setProperty('--dur', (2.8 + Math.random() * 3.8).toFixed(1) + 's');
+      star.style.setProperty('--min-op', (0.18 + Math.random() * 0.22).toFixed(2));
+      star.style.setProperty('--max-op', (0.75 + Math.random() * 0.25).toFixed(2));
+      star.style.animationDelay = (-Math.random() * 4).toFixed(1) + 's';
+
+      if (isCross) {
+        star.textContent = crossChars[i % crossChars.length];
+        star.style.fontSize = (8 + Math.random() * 6) + 'px';
+      } else {
+        const size = (1.5 + Math.random() * 2.2).toFixed(1);
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+      }
+
+      frag.appendChild(star);
+    }
+    starfield.appendChild(frag);
+  }
+
+  // 2. Partikel latar (sparkles & kelopak bunga)
+  function initAmbientParticles() {
+    particlesContainer.innerHTML = '';
+    const frag = document.createDocumentFragment();
+    const sparkleCount = isMobile ? 14 : 22;
+    const symbols = ['✦', '♡', '✧', '⋆', '❀'];
+
+    for (let i = 0; i < sparkleCount; i++) {
+      const s = document.createElement('div');
+      s.className = 'sparkle';
+      s.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      s.style.left = Math.random() * 100 + '%';
+      s.style.fontSize = (11 + Math.random() * 15) + 'px';
+      s.style.animationDelay = (-Math.random() * 10) + 's';
+      s.style.animationDuration = (7 + Math.random() * 8) + 's';
+      frag.appendChild(s);
+    }
+
+    const petalCount = isMobile ? 12 : 20;
+    for (let i = 0; i < petalCount; i++) {
+      const p = document.createElement('div');
+      p.className = 'petal';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.setProperty('--drift', ((Math.random() - 0.5) * 130) + 'px');
+      p.style.animationDelay = (-Math.random() * 12) + 's';
+      p.style.animationDuration = (9 + Math.random() * 7) + 's';
+      frag.appendChild(p);
+    }
+
+    particlesContainer.appendChild(frag);
+  }
+
+  // 3. Hati 3D Partikel Super Smooth & Anti-Lag (Pre-rendered Glow Sprites)
+  const canvas = document.getElementById('heartCanvas');
+  const ctx = canvas.getContext('2d', { alpha: true });
+  let heartParticles = [];
+  let haloParticles = [];
+  let heartTime = 0;
+  let canvasW = 0;
+  let canvasH = 0;
+  let heartDiameter = 0;
+  let isHeartActive = true;
+  let rafId = null;
+
+  // Sprite cache untuk rendering 10x lebih cepat tanpa lag
+  const palette = [
+    '#ffffff',
+    '#fae8ff',
+    '#f0abfc',
+    '#e879f9',
+    '#c084fc',
+    '#a855f7',
+    '#9333ea',
+    '#7e22ce'
+  ];
+
+  const glowSprites = palette.map(color => {
+    const sprite = document.createElement('canvas');
+    const size = 28;
+    sprite.width = size;
+    sprite.height = size;
+    const sCtx = sprite.getContext('2d');
+    const c = size / 2;
+
+    const grad = sCtx.createRadialGradient(c, c, 0, c, c, c);
+    grad.addColorStop(0, '#ffffff');
+    grad.addColorStop(0.28, color);
+    grad.addColorStop(0.65, color + '55');
+    grad.addColorStop(1, 'rgba(0,0,0,0)');
+
+    sCtx.fillStyle = grad;
+    sCtx.beginPath();
+    sCtx.arc(c, c, c, 0, Math.PI * 2);
+    sCtx.fill();
+    return sprite;
+  });
+
+  function resizeHeartCanvas() {
+    const rect = canvas.getBoundingClientRect();
+    canvasW = Math.max(1, rect.width);
+    canvasH = Math.max(1, rect.height);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+    canvas.width = Math.round(canvasW * dpr);
+    canvas.height = Math.round(canvasH * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    buildHeartParticles(canvasW, canvasH);
+  }
+
+  function heartPoint(t, scale) {
+    const x = 16 * Math.pow(Math.sin(t), 3);
+    const y = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+    return { x: x * scale, y: y * scale };
+  }
+
+  function buildHeartParticles(w, h) {
+    heartDiameter = Math.min(w * 0.92, h * 0.86);
+    const scale = heartDiameter / 30.5;
+    const total = isMobile ? 540 : 880;
+
+    heartParticles = [];
+    for (let i = 0; i < total; i++) {
+      const t = Math.random() * Math.PI * 2;
+      // 35% partikel berada di tepi hati agar bentuk hati terlihat sangat tajam, indah & proporsional
+      const isEdge = i < total * 0.35;
+      const radialBias = isEdge
+        ? 0.93 + Math.random() * 0.07
+        : Math.pow(Math.random(), 0.48) * 0.94;
+
+      const pt = heartPoint(t, scale * radialBias);
+
+      const startX = (Math.random() * 1.3 - 0.15) * w;
+      const startY = (Math.random() * 1.3 - 0.15) * h;
+
+      const gradRatio = Math.min(1, Math.max(0, (pt.y + scale * 14) / (scale * 28)));
+      const colorIndex = isEdge
+        ? Math.floor(Math.random() * 3) // tepi hati lebih terang & berkilau
+        : Math.min(palette.length - 1, Math.floor(gradRatio * palette.length));
+
+      heartParticles.push({
+        relX: pt.x,
+        relY: pt.y,
+        x: startX,
+        y: startY,
+        vx: 0,
+        vy: 0,
+        sprite: glowSprites[colorIndex],
+        drawSize: (isEdge ? (isMobile ? 7.5 : 9.5) : (isMobile ? 6.5 : 8.5)) + Math.random() * 5.5,
+        phase: Math.random() * Math.PI * 2,
+        driftSpeed: 0.75 + Math.random() * 0.85,
+        driftRadius: 1.6 + Math.random() * 2.6,
+        alphaBase: isEdge ? 0.88 : 0.65 + Math.random() * 0.25
+      });
+    }
+
+    const haloCount = isMobile ? 36 : 64;
+    const radiusBase = heartDiameter * 0.54;
+    haloParticles = [];
+    for (let j = 0; j < haloCount; j++) {
+      const angle = Math.random() * Math.PI * 2;
+      const ringOffset = (Math.random() - 0.5) * (heartDiameter * 0.26);
+      haloParticles.push({
+        angle,
+        radius: radiusBase + ringOffset,
+        yStretch: 0.74 + Math.random() * 0.28,
+        speed: (0.0012 + Math.random() * 0.0016) * (Math.random() < 0.5 ? 1 : -1),
+        size: 6 + Math.random() * 7,
+        alpha: 0.35 + Math.random() * 0.45,
+        sprite: glowSprites[j % 4]
+      });
+    }
+  }
+
+  function scatterAndReform(e) {
+    if (e) burstEffect(e);
+    for (let i = 0; i < heartParticles.length; i++) {
+      const p = heartParticles[i];
+      p.x = (Math.random() * 1.3 - 0.15) * canvasW;
+      p.y = (Math.random() * 1.3 - 0.15) * canvasH;
+      p.vx = (Math.random() - 0.5) * 1.5;
+      p.vy = (Math.random() - 0.5) * 1.5;
+    }
+  }
+
+  let prevTimestamp = 0;
+  function animateHeart(timestamp = 0) {
+    if (!isHeartActive) {
+      rafId = null;
+      return;
+    }
+
+    if (!prevTimestamp) prevTimestamp = timestamp;
+    const dt = Math.min((timestamp - prevTimestamp) / 16.6667, 1.8);
+    prevTimestamp = timestamp;
+
+    ctx.clearRect(0, 0, canvasW, canvasH);
+    heartTime += 0.015 * dt;
+
+    // Detak jantung halus ganda (lub-dub lembut) + napas pelan
+    const beatWave = Math.sin(heartTime * 2.1);
+    const secondBeat = Math.pow(Math.max(0, Math.sin(heartTime * 2.1 - 0.55)), 4);
+    const pulse = 1 + beatWave * 0.022 + secondBeat * 0.026;
+
+    // Ayunan rotasi & geseran horizontal super lembut
+    const swayY = Math.sin(heartTime * 0.65) * 0.42;
+    const shiftX = Math.sin(heartTime * 0.65) * (canvasW * 0.028);
+    const floatY = Math.cos(heartTime * 0.9) * 6;
+    const cosY = Math.cos(swayY);
+    const sinY = Math.sin(swayY);
+
+    const cx = canvasW / 2 + shiftX;
+    const cy = canvasH / 2 - canvasH * 0.02 + floatY;
+
+    // Aura cahaya lembut di balik hati (sangat ringan & mewah)
+    const auraRadius = heartDiameter * 0.52 * pulse;
+    const auraGrad = ctx.createRadialGradient(cx, cy, auraRadius * 0.1, cx, cy, auraRadius);
+    auraGrad.addColorStop(0, 'rgba(216, 180, 254, 0.22)');
+    auraGrad.addColorStop(0.55, 'rgba(147, 51, 234, 0.11)');
+    auraGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+    ctx.fillStyle = auraGrad;
+    ctx.beginPath();
+    ctx.arc(cx, cy, auraRadius, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Debu bintang melingkar lembut
+    for (let j = 0; j < haloParticles.length; j++) {
+      const h = haloParticles[j];
+      h.angle += h.speed * dt;
+      const hx = cx + Math.cos(h.angle) * h.radius;
+      const hy = cy + Math.sin(h.angle) * h.radius * h.yStretch;
+      const half = h.size * 0.5;
+
+      ctx.globalAlpha = h.alpha * (0.65 + 0.35 * Math.sin(heartTime * 1.8 + j));
+      ctx.drawImage(h.sprite, hx - half, hy - half, h.size, h.size);
+    }
+
+    // Fisika pegas lembut (soft spring) agar partikel mengalir halus tanpa patah-patah
+    const spring = 0.032 * dt;
+    const damping = Math.pow(0.87, dt);
+
+    for (let i = 0; i < heartParticles.length; i++) {
+      const p = heartParticles[i];
+      const tPhase = heartTime * p.driftSpeed + p.phase;
+      const driftX = Math.cos(tPhase) * p.driftRadius;
+      const driftY = Math.sin(tPhase) * p.driftRadius;
+
+      const bx = p.relX * pulse + driftX;
+      const by = p.relY * pulse + driftY;
+
+      const depth = bx * sinY;
+      const perspective = 1 / (1 + depth / (canvasW * 2.2));
+      const targetX = cx + bx * cosY * perspective;
+      const targetY = cy + by * perspective;
+
+      p.vx = (p.vx + (targetX - p.x) * spring) * damping;
+      p.vy = (p.vy + (targetY - p.y) * spring) * damping;
+      p.x += p.vx * dt;
+      p.y += p.vy * dt;
+
+      const twinkle = 0.78 + 0.22 * Math.sin(tPhase * 1.4);
+      const size = p.drawSize * perspective;
+      const half = size * 0.5;
+
+      ctx.globalAlpha = p.alphaBase * twinkle;
+      ctx.drawImage(p.sprite, p.x - half, p.y - half, size, size);
+    }
+
+    ctx.globalAlpha = 1;
+    rafId = requestAnimationFrame(animateHeart);
+  }
+
+  // 4. Efek ledakan partikel emoji saat klik
+  function burstEffect(e) {
+    const x = e.clientX || (e.touches && e.touches[0].clientX) || window.innerWidth / 2;
+    const y = e.clientY || (e.touches && e.touches[0].clientY) || window.innerHeight / 2;
+    const icons = ['💜', '✨', '🌷', '🌸', '✦'];
+
+    for (let i = 0; i < 14; i++) {
+      const el = document.createElement('div');
+      el.className = 'burst-particle';
+      el.textContent = icons[Math.floor(Math.random() * icons.length)];
+      el.style.left = x + 'px';
+      el.style.top = y + 'px';
+
+      const angle = (Math.PI * 2 * i) / 14 + (Math.random() * 0.4);
+      const velocity = 50 + Math.random() * 95;
+      el.style.setProperty('--tx', Math.cos(angle) * velocity + 'px');
+      el.style.setProperty('--ty', Math.sin(angle) * velocity + 'px');
+
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 1150);
+    }
+  }
+
+  // 5. Navigasi antar halaman (otomatis pause/resume canvas agar bebas lag)
+  function goToScreen(targetId) {
+    const screens = ['first', 'second', 'third'];
+    screens.forEach(id => {
+      const el = document.getElementById(id);
+      if (id === targetId) {
+        el.classList.remove('hidden');
+      } else {
+        el.classList.add('hidden');
+      }
+    });
+
+    if (targetId === 'first') {
+      isHeartActive = true;
+      prevTimestamp = 0;
+      scatterAndReform();
+      if (!rafId) rafId = requestAnimationFrame(animateHeart);
+    } else {
+      isHeartActive = false;
+      if (targetId === 'second') {
+        bloom();
+      }
+    }
+  }
+
+  function openSurprise(e) {
+    if (e) burstEffect(e);
+    startMusic();
+    goToScreen('second');
+  }
+
+  // 6. Generator Taman Bunga Responsif
+  function bloom() {
+    const garden = document.getElementById('garden');
+    garden.innerHTML = '';
+    const frag = document.createDocumentFragment();
+    const colors = [
+      ['#e5c9ff', '#b47ee8'],
+      ['#f3dcff', '#c996f7'],
+      ['#d6afff', '#9558cf'],
+      ['#edd1ff', '#ab6ee0']
+    ];
+
+    const flowerCount = window.innerWidth < 600 ? 16 : 26;
+
+    for (let i = 0; i < flowerCount; i++) {
+      const f = document.createElement('div');
+      f.className = 'flower';
+
+      const segment = 96 / flowerCount;
+      const leftPos = 1 + (i * segment) + (Math.random() * segment * 0.8);
+      f.style.left = leftPos + '%';
+      f.style.bottom = (-12 + Math.random() * 18) + 'px';
+      f.style.animationDelay = (0.15 + Math.random() * 1.4) + 's';
+      f.style.zIndex = Math.floor(1 + Math.random() * 4);
+
+      const baseScale = window.innerWidth < 600 ? 0.45 : 0.65;
+      const scale = baseScale + Math.random() * 0.6;
+      f.style.setProperty('--scale', scale.toFixed(2));
+      f.style.setProperty('--sway-dur', (3.5 + Math.random() * 2.5).toFixed(1) + 's');
+
+      const [cLight, cDark] = colors[Math.floor(Math.random() * colors.length)];
+      const gradId = 'grad-' + i + '-' + Math.floor(Math.random() * 1000);
+
+      f.innerHTML = `
+        <svg width="90" height="160" viewBox="0 0 90 160">
+          <defs>
+            <linearGradient id="${gradId}" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="${cLight}" />
+              <stop offset="100%" stop-color="${cDark}" />
+            </linearGradient>
+          </defs>
+          <path d="M45 62 Q40 105 45 155" fill="none" stroke="#5d9468" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M44 118 Q16 98 18 114 Q29 130 44 124" fill="#8cc493" stroke="#5d9468" stroke-width="1.8"/>
+          <path d="M46 96 Q72 80 71 98 Q62 112 47 104" fill="#9fd4a5" stroke="#5d9468" stroke-width="1.8"/>
+          ${Array.from({ length: 8 }, (_, k) => `
+            <ellipse cx="45" cy="42" rx="11" ry="23" fill="url(#${gradId})" opacity="0.92"
+              transform="rotate(${k * 45} 45 42) translate(0 -2)"/>
+          `).join('')}
+          <circle cx="45" cy="42" r="11" fill="#ffe999"/>
+          <circle cx="45" cy="42" r="5.5" fill="#d99b38"/>
+        </svg>
+      `;
+      frag.appendChild(f);
+    }
+    garden.appendChild(frag);
+  }
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      initStarfield();
+      resizeHeartCanvas();
+    }, 150);
+  });
+
+  initStarfield();
+  initAmbientParticles();
+  resizeHeartCanvas();
+  rafId = requestAnimationFrame(animateHeart);
+</script>
+</body>
+</html>
